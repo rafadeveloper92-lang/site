@@ -3,36 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luminoria | Confirmado</title>
+    <title>Luminoria | Download Player</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --primary: #00d2ff;
             --bg: #0f172a;
-            --card: #1e293b;
+            --card: rgba(30, 41, 59, 0.7);
             --text: #f8fafc;
         }
 
         body {
             margin: 0;
-            padding: 0;
+            padding: 20px 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             background: radial-gradient(circle at top right, #1e293b, #0f172a);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, sans-serif;
             color: var(--text);
         }
 
         .container {
             text-align: center;
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            padding: 3rem;
-            border-radius: 24px;
+            background: var(--card);
+            backdrop-filter: blur(12px);
+            padding: 2.5rem;
+            border-radius: 28px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            max-width: 420px;
+            max-width: 500px;
             width: 90%;
             animation: fadeIn 0.8s ease-out;
         }
@@ -43,73 +44,84 @@
         }
 
         .logo {
-            width: 100px;
-            height: 100px;
-            background: #000;
-            border-radius: 22%;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
+            width: 80px;
+            height: 80px;
+            border-radius: 20%;
+            margin-bottom: 1rem;
             border: 2px solid var(--primary);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             letter-spacing: 2px;
-            margin: 10px 0;
+            margin: 0;
             color: var(--primary);
-            text-transform: uppercase;
         }
 
-        .status-badge {
-            background: rgba(0, 210, 255, 0.1);
-            color: var(--primary);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-        }
-
-        p {
+        .description {
             color: #94a3b8;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            font-size: 1.05rem;
+            font-size: 0.95rem;
+            margin: 15px 0 30px;
+            line-height: 1.5;
         }
 
-        .btn-download {
-            background: var(--primary);
-            color: #0f172a;
-            text-decoration: none;
-            padding: 16px 32px;
+        /* Grade de Downloads */
+        .download-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .download-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px;
             border-radius: 12px;
-            font-weight: 800;
-            display: block;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 15px -3px rgba(0, 210, 255, 0.4);
-            text-transform: uppercase;
-            font-size: 1rem;
         }
 
-        .btn-download:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 25px -5px rgba(0, 210, 255, 0.5);
-            filter: brightness(1.1);
+        .download-item i {
+            font-size: 1.5rem;
+            margin-right: 12px;
+            color: var(--primary);
+        }
+
+        .download-item div {
+            text-align: left;
+        }
+
+        .download-item span {
+            display: block;
+            font-size: 0.7rem;
+            color: #94a3b8;
+        }
+
+        .download-item strong {
+            font-size: 0.85rem;
+        }
+
+        .download-item:hover {
+            background: rgba(0, 210, 255, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .full-width {
+            grid-column: span 2;
         }
 
         .notice {
-            margin-top: 25px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: #64748b;
-            font-style: italic;
-        }
-
-        .footer {
             margin-top: 20px;
-            font-size: 0.75rem;
-            color: #475569;
+            padding: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
     </style>
 </head>
@@ -118,20 +130,51 @@
     <div class="container">
         <img src="https://xqcuoqerwrrpvxiwhjup.supabase.co/storage/v1/object/public/logo/app_icon.png.png" alt="Luminoria" class="logo">
         
-        <div class="status-badge">REGISTO CONFIRMADO</div>
-        
         <h1>LUMINORIA</h1>
-        
-        <p>A sua conta foi ativada. Já pode descarregar o nosso <b>player de vídeo</b> para reproduzir os seus ficheiros e conteúdos pessoais com máxima qualidade.</p>
-        
-        <a href="#" class="btn-download">Descarregar Player</a>
-        
-        <div class="notice">
-            A Luminoria é uma ferramenta de reprodução de vídeo. Não fornecemos, vendemos ou gerimos listas de reprodução ou conteúdos de terceiros.
+        <p class="description">
+            A sua conta foi confirmada! Descarregue o nosso <b>player oficial</b> na sua plataforma preferida para reproduzir os seus conteúdos pessoais.
+        </p>
+
+        <div class="download-grid">
+            <a href="#" class="download-item">
+                <i class="fab fa-google-play"></i>
+                <div>
+                    <span>Disponível na</span>
+                    <strong>Play Store</strong>
+                </div>
+            </a>
+
+            <a href="#" class="download-item">
+                <i class="fab fa-apple"></i>
+                <div>
+                    <span>Disponível na</span>
+                    <strong>App Store</strong>
+                </div>
+            </a>
+
+            <a href="#" class="download-item full-width">
+                <i class="fas fa-tv"></i>
+                <div>
+                    <span>Versão para</span>
+                    <strong>Smart TV & Android TV (APK)</strong>
+                </div>
+            </a>
+
+            <a href="#" class="download-item full-width">
+                <i class="fab fa-windows"></i>
+                <div>
+                    <span>Versão para</span>
+                    <strong>Windows Player</strong>
+                </div>
+            </a>
         </div>
-        
-        <div class="footer">
-            © 2026 Luminoria Player • Todos os direitos reservados
+
+        <div class="notice">
+            <strong>Aviso Legal:</strong> A Luminoria é exclusivamente um software reprodutor de ficheiros de vídeo. Não fornecemos listas, canais ou qualquer tipo de conteúdo multimédia.
+        </div>
+
+        <div style="font-size: 0.7rem; color: #475569; margin-top: 15px;">
+            © 2026 Luminoria Player • Versão 1.0.2
         </div>
     </div>
 

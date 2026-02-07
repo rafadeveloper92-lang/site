@@ -32,7 +32,7 @@
             border-radius: 24px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            max-width: 400px;
+            max-width: 420px;
             width: 90%;
             animation: fadeIn 0.8s ease-out;
         }
@@ -65,16 +65,18 @@
             color: var(--primary);
             padding: 6px 16px;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: bold;
             display: inline-block;
             margin-bottom: 20px;
+            letter-spacing: 1px;
         }
 
         p {
             color: #94a3b8;
             line-height: 1.6;
             margin-bottom: 30px;
+            font-size: 1.05rem;
         }
 
         .btn-download {
@@ -97,8 +99,15 @@
             filter: brightness(1.1);
         }
 
+        .notice {
+            margin-top: 25px;
+            font-size: 0.7rem;
+            color: #64748b;
+            font-style: italic;
+        }
+
         .footer {
-            margin-top: 30px;
+            margin-top: 20px;
             font-size: 0.75rem;
             color: #475569;
         }
@@ -109,13 +118,17 @@
     <div class="container">
         <img src="https://xqcuoqerwrrpvxiwhjup.supabase.co/storage/v1/object/public/logo/app_icon.png.png" alt="Luminoria" class="logo">
         
-        <div class="status-badge">E-MAIL CONFIRMADO</div>
+        <div class="status-badge">REGISTO CONFIRMADO</div>
         
         <h1>LUMINORIA</h1>
         
-        <p>Sua conta está ativa e pronta. Agora você pode baixar o aplicativo para começar sua experiência de cinema privado.</p>
+        <p>A sua conta foi ativada. Já pode descarregar o nosso <b>player de vídeo</b> para reproduzir os seus ficheiros e conteúdos pessoais com máxima qualidade.</p>
         
-        <a href="#" class="btn-download">Baixar App Agora</a>
+        <a href="#" class="btn-download">Descarregar Player</a>
+        
+        <div class="notice">
+            A Luminoria é uma ferramenta de reprodução de vídeo. Não fornecemos, vendemos ou gerimos listas de reprodução ou conteúdos de terceiros.
+        </div>
         
         <div class="footer">
             © 2026 Luminoria Player • Todos os direitos reservados

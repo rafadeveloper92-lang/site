@@ -2,5 +2,6 @@
 // A anon key é segura no frontend (Supabase usa RLS para proteger dados).
 // Nunca use a service_role key no site.
 
-window.SUPABASE_URL = 'https://SEU_PROJETO.supabase.co';
-window.SUPABASE_ANON_KEY = 'eyJhbGc...sua_anon_key_aqui';
+window.SUPABASE_URL = 'https://xqcuoqerwrrpvxiwhjup.supabase.co';
+window.SUPABASE_ANON_KEY = 'sb_publishable_zozXuy5J8KowY_P3iZn4xg_vol7HPN3';
+

@@ -10,7 +10,7 @@
   <style>
     :root {
       --bg: #08080a;
-      --card: rgba(26, 26, 31, 0.9);
+      --card: rgba(26, 26, 31, 0.95);
       --text: #f0f0f0;
       --text-muted: #aaa;
       --primary: #E91E63;
@@ -26,67 +26,66 @@
     body {
       font-family: 'Inter', -apple-system, sans-serif;
       background: var(--bg);
-      background-image: 
-        radial-gradient(circle at 10% 20%, rgba(233, 30, 99, 0.1) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(63, 81, 181, 0.1) 0%, transparent 40%);
+      background-image: radial-gradient(circle at 10% 20%, rgba(233, 30, 99, 0.1) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(63, 81, 181, 0.1) 0%, transparent 40%);
       color: var(--text);
       min-height: 100vh;
       margin: 0;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      overflow-x: hidden;
       padding: 20px;
     }
 
-    /* LOGO */
+    /* LOGO SUPERIOR */
+    .brand-header {
+      width: 100%;
+      max-width: 1100px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0 0 20px 0;
+    }
+
     .brand-logo {
-      position: absolute;
-      top: 30px;
-      right: 40px;
       display: flex;
       align-items: center;
-      gap: 12px;
-      z-index: 100;
+      gap: 10px;
     }
 
     .brand-logo span {
       font-weight: 900;
       font-size: 1.4rem;
       letter-spacing: 3px;
-      background: linear-gradient(to right, #fff, var(--primary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: white;
     }
 
+    /* CONTAINER PRINCIPAL */
     .main-wrapper {
       display: flex;
       width: 100%;
       max-width: 1100px;
-      min-height: 650px;
       background: var(--glass);
       backdrop-filter: blur(20px);
       border-radius: 24px;
       border: 1px solid var(--border);
       overflow: hidden;
       box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-      position: relative;
     }
 
+    /* ESQUERDA: VÍDEO */
     .hero-side {
-      flex: 1.2;
-      padding: 60px;
+      flex: 1;
+      padding: 50px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       background: linear-gradient(45deg, rgba(0,0,0,0.5), transparent);
     }
 
-    .hero-side h2 {
-      font-size: 2.5rem;
-      margin-bottom: 15px;
-      line-height: 1.1;
-    }
+    .hero-side h2 { font-size: 2.2rem; margin-bottom: 10px; line-height: 1.2; }
+    .hero-side h2 span { color: var(--primary); }
 
     .video-container {
       width: 100%;
@@ -95,11 +94,12 @@
       border-radius: 16px;
       border: 1px solid var(--border);
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      margin-top: 20px;
     }
 
     .video-container iframe { width: 100%; height: 100%; border: none; }
 
+    /* DIREITA: FORMULÁRIO (AQUI ONDE ESTAVA O ERRO) */
     .form-side {
       width: 450px;
       background: var(--card);
@@ -108,12 +108,14 @@
       flex-direction: column;
       justify-content: center;
       border-left: 1px solid var(--border);
+      position: relative;
+      z-index: 2;
     }
 
-    .form-group { margin-bottom: 18px; }
+    .form-group { margin-bottom: 20px; }
     label { display: block; margin-bottom: 8px; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
-    input[type="email"], input[type="password"] {
+    input {
       width: 100%;
       padding: 14px;
       border: 1px solid var(--border);
@@ -122,8 +124,6 @@
       color: #fff;
       font-size: 1rem;
     }
-
-    input:focus { outline: none; border-color: var(--primary); }
 
     .btn {
       width: 100%;
@@ -134,49 +134,10 @@
       background: var(--primary);
       color: white;
       cursor: pointer;
-      margin-top: 10px;
       font-size: 1rem;
+      margin-top: 10px;
     }
 
     .btn:hover { background: var(--primary-hover); transform: translateY(-2px); }
 
-    .message {
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      font-size: 0.9rem;
-    }
-    .message.error { background: rgba(244,67,54,0.1); color: #ff5252; border: 1px solid rgba(244,67,54,0.2); }
-    .message.success { background: rgba(76,175,80,0.1); color: #69f0ae; border: 1px solid rgba(76,175,80,0.2); }
-    .hidden { display: none !important; }
-
-    /* RESPONSIVIDADE PARA CELULAR */
-    @media (max-width: 900px) {
-      body { padding: 10px; }
-      .main-wrapper { flex-direction: column; min-height: auto; border-radius: 15px; }
-      .hero-side { display: none; }
-      .form-side { width: 100%; padding: 40px 20px; border-left: none; }
-      .brand-logo { position: relative; top: 0; right: 0; justify-content: center; margin-bottom: 20px; }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="brand-logo">
-    <span>LUMINORIA</span>
-    <i class="fas fa-play-circle" style="color: var(--primary); font-size: 1.5rem;"></i>
-  </div>
-
-  <div class="main-wrapper">
-    <div class="hero-side">
-      <h2>Sua experiência<br><span style="color: var(--primary)">Luminoria</span> começa aqui.</h2>
-      <p style="color: var(--text-muted); margin-bottom: 25px;">Assista e descubra o player que vai mudar sua forma de ver mídia.</p>
-      
-      <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/EhBQ9MIY8jE?autoplay=1&loop=1&playlist=EhBQ9MIY8jE&controls=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-      </div>
-    </div>
-
-    <div class="form-side">
-      <div id="message" class="message hidden"></div>
-      <h1 id="titleText" style="margin-top: 0; font-size: 1.8rem;">
+    .message { padding: 15px; border-radius: 10px; margin-bottom:

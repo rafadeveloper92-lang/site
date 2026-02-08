@@ -3,31 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luminoria | Cadastro & Login</title>
+  <title>Cadastro | Luminoria</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  
   <style>
     :root {
-      --bg: #08080a;
-      --card: rgba(26, 26, 31, 0.95);
+      --bg: #0f0f12;
+      --card: #1a1a1f;
       --text: #f0f0f0;
-      --text-muted: #aaa;
+      --text-muted: #888;
       --primary: #E91E63;
       --primary-hover: #d81b5c;
-      --border: rgba(255, 255, 255, 0.1);
+      --border: #2a2a30;
       --error: #f44336;
       --success: #4caf50;
-      --glass: rgba(255, 255, 255, 0.03);
     }
 
     * { box-sizing: border-box; transition: all 0.3s ease; }
 
     body {
-      font-family: 'Inter', -apple-system, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: var(--bg);
-      background-image: radial-gradient(circle at 10% 20%, rgba(233, 30, 99, 0.1) 0%, transparent 40%),
-                        radial-gradient(circle at 90% 80%, rgba(63, 81, 181, 0.1) 0%, transparent 40%);
+      background-image: radial-gradient(circle at 10% 20%, rgba(233, 30, 99, 0.05) 0%, transparent 40%);
       color: var(--text);
       min-height: 100vh;
       margin: 0;
@@ -38,106 +35,248 @@
       padding: 20px;
     }
 
-    /* LOGO SUPERIOR */
+    /* LOGO LUMINORIA */
     .brand-header {
       width: 100%;
-      max-width: 1100px;
+      max-width: 1000px;
       display: flex;
       justify-content: flex-end;
-      align-items: center;
-      padding: 0 0 20px 0;
+      padding-bottom: 20px;
     }
-
-    .brand-logo {
+    .logo-container {
       display: flex;
       align-items: center;
       gap: 10px;
     }
-
-    .brand-logo span {
-      font-weight: 900;
-      font-size: 1.4rem;
-      letter-spacing: 3px;
-      color: white;
+    .logo-container span {
+      font-weight: 800;
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+      color: #fff;
     }
 
-    /* CONTAINER PRINCIPAL */
-    .main-wrapper {
+    .main-container {
       display: flex;
       width: 100%;
-      max-width: 1100px;
-      background: var(--glass);
-      backdrop-filter: blur(20px);
-      border-radius: 24px;
+      max-width: 1000px;
+      background: var(--card);
+      border-radius: 20px;
       border: 1px solid var(--border);
       overflow: hidden;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
     }
 
     /* ESQUERDA: VÍDEO */
     .hero-side {
       flex: 1;
-      padding: 50px;
+      padding: 40px;
+      background: rgba(0,0,0,0.3);
       display: flex;
       flex-direction: column;
       justify-content: center;
-      background: linear-gradient(45deg, rgba(0,0,0,0.5), transparent);
     }
 
-    .hero-side h2 { font-size: 2.2rem; margin-bottom: 10px; line-height: 1.2; }
+    .hero-side h2 { font-size: 2rem; margin-bottom: 20px; }
     .hero-side h2 span { color: var(--primary); }
 
-    .video-container {
+    .video-box {
       width: 100%;
       aspect-ratio: 16/9;
       background: #000;
-      border-radius: 16px;
-      border: 1px solid var(--border);
+      border-radius: 12px;
       overflow: hidden;
-      margin-top: 20px;
-    }
-
-    .video-container iframe { width: 100%; height: 100%; border: none; }
-
-    /* DIREITA: FORMULÁRIO (AQUI ONDE ESTAVA O ERRO) */
-    .form-side {
-      width: 450px;
-      background: var(--card);
-      padding: 50px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      border-left: 1px solid var(--border);
-      position: relative;
-      z-index: 2;
-    }
-
-    .form-group { margin-bottom: 20px; }
-    label { display: block; margin-bottom: 8px; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
-
-    input {
-      width: 100%;
-      padding: 14px;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      background: rgba(0, 0, 0, 0.4);
-      color: #fff;
+    }
+
+    /* DIREITA: FORMULÁRIO */
+    .form-side {
+      width: 400px;
+      padding: 40px;
+      border-left: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    h1 { margin: 0 0 10px 0; font-size: 1.6rem; }
+    .subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px; }
+
+    .form-group { margin-bottom: 15px; }
+    label { display: block; margin-bottom: 6px; font-size: 0.85rem; color: var(--text-muted); }
+
+    input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--text);
       font-size: 1rem;
     }
+
+    input:focus { outline: none; border-color: var(--primary); }
 
     .btn {
       width: 100%;
-      padding: 16px;
+      padding: 14px;
       border: none;
-      border-radius: 10px;
-      font-weight: 700;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
       background: var(--primary);
       color: white;
-      cursor: pointer;
-      font-size: 1rem;
       margin-top: 10px;
     }
 
-    .btn:hover { background: var(--primary-hover); transform: translateY(-2px); }
+    .btn:hover { background: var(--primary-hover); }
 
-    .message { padding: 15px; border-radius: 10px; margin-bottom:
+    .message {
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-size: 0.9rem;
+    }
+    .message.error { background: rgba(244,67,54,0.15); color: var(--error); }
+    .message.success { background: rgba(76,175,80,0.15); color: var(--success); }
+    .hidden { display: none !important; }
+
+    .footer { margin-top: 25px; text-align: center; font-size: 0.85rem; color: var(--text-muted); }
+    .footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
+
+    /* RESPONSIVO */
+    @media (max-width: 850px) {
+      .hero-side { display: none; }
+      .form-side { width: 100%; border-left: none; }
+      .brand-header { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="brand-header">
+    <div class="logo-container">
+      <span>LUMINORIA</span>
+      <i class="fas fa-play-circle" style="color: var(--primary); font-size: 1.4rem;"></i>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <div class="hero-side">
+      <h2>Sua mídia,<br><span>Sua liberdade.</span></h2>
+      <div class="video-box">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/EhBQ9MIY8jE?autoplay=1&loop=1&playlist=EhBQ9MIY8jE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="form-side">
+      <div id="message" class="message hidden"></div>
+
+      <h1 id="mainTitle">Criar conta</h1>
+      <p class="subtitle" id="mainSubtitle">Registe-se para usar o player Luminoria no app.</p>
+
+      <form id="form" autocomplete="on">
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" required placeholder="seu@email.com">
+        </div>
+        <div class="form-group">
+          <label for="password">Senha</label>
+          <input type="password" id="password" name="password" required minlength="6" placeholder="Mín. 6 caracteres">
+        </div>
+        <div class="form-group" id="confirmPassGroup">
+          <label for="password2">Confirmar senha</label>
+          <input type="password" id="password2" name="password2" placeholder="Repita a senha">
+        </div>
+        
+        <div class="form-group" id="termsGroup" style="font-size: 0.8rem; color: var(--text-muted);">
+          <input type="checkbox" id="terms" required> Aceito os Termos de Uso.
+        </div>
+
+        <button type="submit" class="btn" id="btnSubmit">Criar conta</button>
+      </form>
+
+      <p class="footer" id="footerArea">
+        Já tem conta? <a href="javascript:showLogin()">Entrar</a><br><br>
+        <a href="https://rafadeveloper92-lang.github.io/site/" style="opacity:0.5">← Voltar ao site</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script>
+    const SUPABASE_URL = window.SUPABASE_URL || '';
+    const SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || '';
+    let supabase = null;
+    let isLoginMode = false;
+
+    function initSupabase() {
+      if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return false;
+      supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      return true;
+    }
+
+    function showMessage(text, isError) {
+      const el = document.getElementById('message');
+      el.textContent = text;
+      el.className = 'message ' + (isError ? 'error' : 'success');
+      el.classList.remove('hidden');
+    }
+
+    function showLogin() {
+      isLoginMode = true;
+      document.getElementById('mainTitle').textContent = 'Entrar';
+      document.getElementById('mainSubtitle').textContent = 'Acesse sua conta Luminoria.';
+      document.getElementById('confirmPassGroup').classList.add('hidden');
+      document.getElementById('termsGroup').classList.add('hidden');
+      document.getElementById('btnSubmit').textContent = 'Entrar';
+      document.getElementById('footerArea').innerHTML = 'Não tem conta? <a href="javascript:showSignup()">Criar conta</a><br><br><a href="https://rafadeveloper92-lang.github.io/site/" style="opacity:0.5">← Voltar ao site</a>';
+    }
+
+    function showSignup() {
+      isLoginMode = false;
+      document.getElementById('mainTitle').textContent = 'Criar conta';
+      document.getElementById('mainSubtitle').textContent = 'Registe-se para usar o player Luminoria no app.';
+      document.getElementById('confirmPassGroup').classList.remove('hidden');
+      document.getElementById('termsGroup').classList.remove('hidden');
+      document.getElementById('btnSubmit').textContent = 'Criar conta';
+      document.getElementById('footerArea').innerHTML = 'Já tem conta? <a href="javascript:showLogin()">Entrar</a><br><br><a href="https://rafadeveloper92-lang.github.io/site/" style="opacity:0.5">← Voltar ao site</a>';
+    }
+
+    document.getElementById('form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const password2 = document.getElementById('password2').value;
+
+      if (!isLoginMode && password !== password2) {
+        showMessage('As senhas não coincidem.', true);
+        return;
+      }
+
+      if (!supabase && !initSupabase()) {
+          showMessage('Erro na configuração do banco de dados.', true);
+          return;
+      }
+
+      const btn = document.getElementById('btnSubmit');
+      btn.disabled = true;
+
+      try {
+        if (isLoginMode) {
+          const { error } = await supabase.auth.signInWithPassword({ email, password });
+          if (error) throw error;
+          window.location.href = "https://rafadeveloper92-lang.github.io/site/";
+        } else {
+          const { error } = await supabase.auth.signUp({ email, password });
+          if (error) throw error;
+          showMessage('Conta criada! Verifique seu e-mail.', false);
+        }
+      } catch (err) {
+        showMessage(err.message, true);
+      }
+      btn.disabled = false;
+    });
+
+    initSupabase();
+  </script>
+</body>
+</html>
